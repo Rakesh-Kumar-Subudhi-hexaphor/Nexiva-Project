@@ -33,6 +33,16 @@
                         @enderror
                     </div>
 
+                    <div class="col-md-6" id="image-section">
+                        <label class="form-label" for="multicol-username">Icon</label>
+                        <div class="input-group">
+                            <input type="file" id="multicol-username" name="icon" class="form-control" />
+                        </div>
+                        @error('icon')
+                            <p class="text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <div class="col-md-6" id="meta-title-section">
                         <label class="form-label" for="location">Short Description</label>
                         <input type="text" id="short_desc" name="short_desc" class="form-control"
