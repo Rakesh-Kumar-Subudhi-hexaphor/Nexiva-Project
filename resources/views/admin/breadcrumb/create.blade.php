@@ -48,7 +48,7 @@
                     <div class="col-md-12" id="sub-section">
                         <label class="form-label" for="multicol-username">Sub Heading</label>
                         <div class="input-group">
-                            <input type="file" id="multicol-username" name="subHeading" class="form-control" />
+                            <input type="text" id="multicol-username" name="subHeading" class="form-control" />
                         </div>
                         @error('subHeading')
                             <p class="text-xs text-red-500">{{ $message }}</p>

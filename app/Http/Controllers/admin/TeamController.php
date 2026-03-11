@@ -34,11 +34,15 @@ class TeamController extends Controller
 
         $slug = Str::slug($request->title);
 
-        $imageName = null;
+        $imagePath = null;
 
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
+ if ($request->hasFile('image')) {
+
+            $imageName = rand().'_image.'.$request->image->extension();
+
             $request->image->move(public_path('uploads/teams'), $imageName);
+
+            $imagePath = 'uploads/teams/'.$imageName;
         }
 
         Team::create([
@@ -46,7 +50,7 @@ class TeamController extends Controller
             'slug' => $slug,
             'email' => $request->email,
             'designation' => $request->designation,
-            'image' => $imageName,
+            'image' => $imagePath,
             'short_desc' => $request->short_desc
         ]);
 
@@ -54,7 +58,7 @@ class TeamController extends Controller
     }
 
     // Edit form
-    public function edit($id)
+    public function show($id)
     {
         $team = Team::findOrFail($id);
         return view('admin.team.edit', compact('team'));
@@ -74,7 +78,7 @@ class TeamController extends Controller
 
         $slug = Str::slug($request->title);
 
-        $imageName = $team->image;
+        $imagePath = $team->image;
 
         if ($request->hasFile('image')) {
 
@@ -82,8 +86,9 @@ class TeamController extends Controller
                 unlink(public_path('uploads/teams/'.$team->image));
             }
 
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = rand().'.'.$request->image->extension();
             $request->image->move(public_path('uploads/teams'), $imageName);
+            $imagePath = 'uploads/teams/'.$imageName;
         }
 
         $team->update([
@@ -91,7 +96,7 @@ class TeamController extends Controller
             'slug' => $slug,
             'email' => $request->email,
             'designation' => $request->designation,
-            'image' => $imageName,
+            'image' => $imagePath,
             'short_desc' => $request->short_desc
         ]);
 
@@ -103,8 +108,8 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
 
-        if ($team->image && file_exists(public_path('uploads/teams/'.$team->image))) {
-            unlink(public_path('uploads/teams/'.$team->image));
+        if ($team->image && file_exists(public_path($team->image))) {
+            unlink(public_path($team->image));
         }
 
         $team->delete();

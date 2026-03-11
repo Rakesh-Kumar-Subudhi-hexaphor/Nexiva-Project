@@ -9,16 +9,16 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-     public function index()
+    public function index()
     {
         $jobs = Job::latest()->get();
-        return view('admin.jobs.index', compact('jobs'));
+        return view('admin.job.index', compact('jobs'));
     }
 
     // Show create form
     public function create()
     {
-        return view('admin.jobs.create');
+        return view('admin.job.create');
     }
 
     // Store job
@@ -39,17 +39,18 @@ class JobController extends Controller
             'type' => $request->type,
             'requirement' => $request->requirement,
             'description' => $request->description,
-           
+            'status' => 'active',
+
         ]);
 
-        return redirect()->route('admin.job')->with('success','Job Created Successfully');
+        return redirect()->route('admin.job')->with('success', 'Job Created Successfully');
     }
 
     // Edit form
-    public function edit($id)
+    public function show($id)
     {
         $job = Job::findOrFail($id);
-        return view('admin.jobs.edit', compact('job'));
+        return view('admin.job.edit', compact('job'));
     }
 
     // Update job
@@ -72,18 +73,26 @@ class JobController extends Controller
             'type' => $request->type,
             'requirement' => $request->requirement,
             'description' => $request->description,
-        
+
         ]);
 
-        return redirect()->route('admin.job')->with('success','Job Updated Successfully');
+        return redirect()->route('admin.job')->with('success', 'Job Updated Successfully');
     }
 
     // Delete job
-    public function destroy($id)
+    public function delete($id)
     {
         $job = Job::findOrFail($id);
         $job->delete();
 
-        return redirect()->route('admin.job')->with('success','Job Deleted Successfully');
+        return redirect()->route('admin.job')->with('success', 'Job Deleted Successfully');
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $job = Job::findOrFail($id);
+        $job->status = $request->status ? 'active' : 'inactive';
+        $job->save();
+        return back();
     }
 }

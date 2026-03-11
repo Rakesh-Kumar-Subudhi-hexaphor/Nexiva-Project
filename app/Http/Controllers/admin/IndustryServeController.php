@@ -12,13 +12,13 @@ class IndustryServeController extends Controller
     public function index()
     {
         $industries = IndustryServe::latest()->get();
-        return view('admin.industry_serve.index', compact('industries'));
+        return view('admin.industry-serve.index', compact('industries'));
     }
 
     // Show create form
     public function create()
     {
-        return view('admin.industry_serve.create');
+        return view('admin.industry-serve.create');
     }
 
     // Store service
@@ -31,31 +31,47 @@ class IndustryServeController extends Controller
 
         $slug = Str::slug($request->title);
 
-        $imageName = null;
+        $imagePath = null;
+        $iconPath = null;
 
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/industry_serve'), $imageName);
+
+            $imageName = rand() . '_image.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads/industry_serve/images'), $imageName);
+
+            $imagePath = 'uploads/industry_serve/images/' . $imageName;
+        }
+
+        if ($request->hasFile('icon')) {
+
+            $iconName = rand() . '_icon.' . $request->icon->extension();
+
+            $request->icon->move(public_path('uploads/industry_serve/icons'), $iconName);
+
+            $iconPath = 'uploads/industry_serve/icons/' . $iconName;
         }
 
         IndustryServe::create([
             'title' => $request->title,
             'slug' => $slug,
-            'tags' => $request->tags,
-            'icon' => $request->icon,
-            'image' => $imageName,
+            'tags' => $request->tags_hidden,
+            'icon' => $iconPath,
+            'image' => $imagePath,
             'short_desc' => $request->short_desc,
+            'meta_title' => $request->meta_title,
+            'meta_desc' => $request->meta_desc,
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.industry-serve')->with('success','Industry Serve Created Successfully');
+        return redirect()->route('admin.industry-serve')->with('success', 'Industry Serve Created Successfully');
     }
 
     // Edit form
-    public function edit($id)
+    public function show($id)
     {
         $industry = IndustryServe::findOrFail($id);
-        return view('admin.industry_serve.edit', compact('industry'));
+        return view('admin.industry-serve.edit', compact('industry'));
     }
 
     // Update service
@@ -69,30 +85,50 @@ class IndustryServeController extends Controller
         ]);
 
         $slug = Str::slug($request->title);
+        $imagePath = $industry->image;
+        $iconPath = $industry->icon;
 
-        $imageName = $industry->image;
-
+        // Update Image
         if ($request->hasFile('image')) {
 
-            if ($industry->image && file_exists(public_path('uploads/industry_serve/'.$industry->image))) {
-                unlink(public_path('uploads/industry_serve/'.$industry->image));
+            if ($industry->image && file_exists(public_path($industry->image))) {
+                unlink(public_path($industry->image));
             }
 
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/industry_serve'), $imageName);
+            $imageName = time() . '_image.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads/industry_serve/images'), $imageName);
+
+            $imagePath = 'uploads/industry_serve/images/' . $imageName;
+        }
+
+        // Update Icon
+        if ($request->hasFile('icon')) {
+
+            if ($industry->icon && file_exists(public_path($industry->icon))) {
+                unlink(public_path($industry->icon));
+            }
+
+            $iconName = time() . '_icon.' . $request->icon->extension();
+
+            $request->icon->move(public_path('uploads/industry_serve/icons'), $iconName);
+
+            $iconPath = 'uploads/industry_serve/icons/' . $iconName;
         }
 
         $industry->update([
             'title' => $request->title,
             'slug' => $slug,
-            'tags' => $request->tags,
-            'icon' => $request->icon,
-            'image' => $imageName,
+            'tags' => $request->tags_hidden,
+            'icon' => $iconPath,
+            'image' => $imagePath,
             'short_desc' => $request->short_desc,
+            'meta_title' => $request->meta_title,
+            'meta_desc' => $request->meta_desc,
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.industry-serve')->with('success','Industry Serve Updated Successfully');
+        return redirect()->route('admin.industry-serve')->with('success', 'Industry Serve Updated Successfully');
     }
 
     // Delete
@@ -100,12 +136,16 @@ class IndustryServeController extends Controller
     {
         $industry = IndustryServe::findOrFail($id);
 
-        if ($industry->image && file_exists(public_path('uploads/industry_serve/'.$industry->image))) {
-            unlink(public_path('uploads/industry_serve/'.$industry->image));
+        if ($industry->image && file_exists(public_path($industry->image))) {
+            unlink(public_path($industry->image));
+        }
+
+        if ($industry->icon && file_exists(public_path($industry->icon))) {
+            unlink(public_path($industry->icon));
         }
 
         $industry->delete();
 
-        return redirect()->route('admin.industry-serve')->with('success','Industry Serve Deleted Successfully');
+        return redirect()->route('admin.industry-serve')->with('success', 'Industry Serve Deleted Successfully');
     }
 }

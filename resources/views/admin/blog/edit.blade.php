@@ -16,14 +16,14 @@
 
 
                     <!-- Category (Only shown for Blog) -->
-                    <div class="col-md-6" id="source-section" >
+                    {{-- <div class="col-md-6" id="source-section">
                         <label class="form-label" for="product-name">Category</label>
-                        <input type="text" id="product-name" name="category"   value="{{ $blog->category }}" class="form-control"
-                            placeholder="Enter category" />
+                        <input type="text" id="product-name" name="category" value="{{ $blog->category }}"
+                            class="form-control" placeholder="Enter category" />
                         @error('category')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> --}}
 
 
                     <!-- Title (Only shown for Blog and Video Blog) -->
@@ -85,84 +85,84 @@
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
-                   <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var tagContainer = document.getElementById('tag-container');
-    var textarea = document.getElementById('tagTextarea');
-    var tagsHiddenInput = document.getElementById('tagsHiddenInput');
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var tagContainer = document.getElementById('tag-container');
+                            var textarea = document.getElementById('tagTextarea');
+                            var tagsHiddenInput = document.getElementById('tagsHiddenInput');
 
-    // Load existing tags on edit
-    if (tagsHiddenInput.value) {
-        processInput(tagsHiddenInput.value);
-    }
+                            // Load existing tags on edit
+                            if (tagsHiddenInput.value) {
+                                processInput(tagsHiddenInput.value);
+                            }
 
-    // Trigger when typing a comma
-    textarea.addEventListener('input', function() {
-        let value = textarea.value;
-        if (value.includes(',')) {
-            processInput(value);
-            textarea.value = ''; // clear input after making tags
-        }
-    });
+                            // Trigger when typing a comma
+                            textarea.addEventListener('input', function() {
+                                let value = textarea.value;
+                                if (value.includes(',')) {
+                                    processInput(value);
+                                    textarea.value = ''; // clear input after making tags
+                                }
+                            });
 
-    // Handle paste (comma-separated tags)
-    textarea.addEventListener('paste', function(event) {
-        event.preventDefault();
-        var paste = (event.clipboardData || window.clipboardData).getData('text');
-        processInput(paste);
-        textarea.value = '';
-    });
+                            // Handle paste (comma-separated tags)
+                            textarea.addEventListener('paste', function(event) {
+                                event.preventDefault();
+                                var paste = (event.clipboardData || window.clipboardData).getData('text');
+                                processInput(paste);
+                                textarea.value = '';
+                            });
 
-    // Process string into tags
-    function processInput(inputText) {
-        inputText.split(',').forEach(function(tag) {
-            addTag(tag.trim());
-        });
-        updateHiddenInput();
-    }
+                            // Process string into tags
+                            function processInput(inputText) {
+                                inputText.split(',').forEach(function(tag) {
+                                    addTag(tag.trim());
+                                });
+                                updateHiddenInput();
+                            }
 
-    // Add single tag
-    function addTag(tagText) {
-        if (tagText !== "") {
-            // prevent duplicates
-            var existingTags = Array.from(tagContainer.children).map(el =>
-                el.textContent.trim().replace(/\s+✖$/, '')
-            );
-            if (existingTags.includes(tagText)) return;
+                            // Add single tag
+                            function addTag(tagText) {
+                                if (tagText !== "") {
+                                    // prevent duplicates
+                                    var existingTags = Array.from(tagContainer.children).map(el =>
+                                        el.textContent.trim().replace(/\s+✖$/, '')
+                                    );
+                                    if (existingTags.includes(tagText)) return;
 
-            var tagElement = document.createElement('div');
-            tagElement.className =
-                'tag-item d-flex gap-2 inline text-primary text-dark px-2 py-1 rounded-full mr-2 mb-2';
-            tagElement.textContent = tagText;
-            tagElement.innerHTML += ' <span class="cursor-pointer ml-1" onclick="removeTag(this)">✖</span>';
-            tagContainer.appendChild(tagElement);
-        }
-    }
+                                    var tagElement = document.createElement('div');
+                                    tagElement.className =
+                                        'tag-item d-flex gap-2 inline text-primary text-dark px-2 py-1 rounded-full mr-2 mb-2';
+                                    tagElement.textContent = tagText;
+                                    tagElement.innerHTML += ' <span class="cursor-pointer ml-1" onclick="removeTag(this)">✖</span>';
+                                    tagContainer.appendChild(tagElement);
+                                }
+                            }
 
-    // Remove tag
-    tagContainer.addEventListener('click', function(event) {
-        if (event.target.tagName === 'SPAN' && event.target.classList.contains('cursor-pointer')) {
-            removeTag(event.target.parentNode);
-        }
-    });
+                            // Remove tag
+                            tagContainer.addEventListener('click', function(event) {
+                                if (event.target.tagName === 'SPAN' && event.target.classList.contains('cursor-pointer')) {
+                                    removeTag(event.target.parentNode);
+                                }
+                            });
 
-    function removeTag(tagElement) {
-        tagContainer.removeChild(tagElement);
-        updateHiddenInput();
-    }
+                            function removeTag(tagElement) {
+                                tagContainer.removeChild(tagElement);
+                                updateHiddenInput();
+                            }
 
-    // Update hidden input with current tags
-    function updateHiddenInput() {
-        var tags = Array.from(tagContainer.children)
-            .map(function(tagElement) {
-                return tagElement.textContent.trim().replace(/\s+✖$/, '');
-            })
-            .filter(Boolean);
+                            // Update hidden input with current tags
+                            function updateHiddenInput() {
+                                var tags = Array.from(tagContainer.children)
+                                    .map(function(tagElement) {
+                                        return tagElement.textContent.trim().replace(/\s+✖$/, '');
+                                    })
+                                    .filter(Boolean);
 
-        tagsHiddenInput.value = tags.join(',');
-    }
-});
-</script>
+                                tagsHiddenInput.value = tags.join(',');
+                            }
+                        });
+                    </script>
 
                     <!-- Meta Description Section -->
                     <div class="col-md-6" id="meta-desc-section">

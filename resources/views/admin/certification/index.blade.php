@@ -1,7 +1,7 @@
 <x-backend.app-layout>
 
     <div class="bg-white m-3 p-3">
-        <a href="{{ route('admin.achivement.create') }}" class="btn btn-primary mb-2">+ Create</a>
+        <a href="{{ route('admin.certification.create') }}" class="btn btn-primary mb-2">+ Create</a>
         <!-- Role Table -->
         <div class="card">
             <div class="card-datatable table-responsive">
@@ -27,11 +27,11 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-start" style="gap: 7px;">
-                                        <a href="{{ route('admin.certiification.edit', $certification->id) }}"
+                                        <a href="{{ route('admin.certification.edit', $certification->id) }}"
                                             class="btn btn-info mr-2">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
-                                        <a href="{{ route('admin.certiification.delete', $certification->id) }}"
+                                        <a href="{{ route('admin.certification.delete', $certification->id) }}"
                                             class="btn btn-danger mr-2">
                                             <i class="fas fa-trash-alt"></i> Delete
                                         </a>

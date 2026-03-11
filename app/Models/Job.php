@@ -9,4 +9,7 @@ class Job extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'slug', 'description', 'type', 'requirement', 'location', 'status'];
+    protected $casts = [
+        'requirement' => 'array'
+    ];
 }

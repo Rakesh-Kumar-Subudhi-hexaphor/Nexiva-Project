@@ -19,6 +19,8 @@ return new class extends Migration
             $table->json('service')->nullable();
             $table->string('url')->nullable();
             $table->string('client')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_desc')->nullable();
             $table->date('date')->nullable();
             $table->text('short_desc')->nullable();
             $table->text('description');

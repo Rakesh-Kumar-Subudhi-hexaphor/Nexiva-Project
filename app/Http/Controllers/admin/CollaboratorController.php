@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CollaboratorController extends Controller
 {
-     public function index()
+    public function index()
     {
         $collaborators = Collaborator::latest()->get();
         return view('admin.collaborator.index', compact('collaborators'));
@@ -26,19 +26,24 @@ class CollaboratorController extends Controller
             'logo' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
-        $logoName = null;
+        $logoPath = null;
+
 
         if ($request->hasFile('logo')) {
-            $logoName = time().'.'.$request->logo->extension();
+
+            $logoName = rand() . '_logo.' . $request->logo->extension();
+
             $request->logo->move(public_path('uploads/collaborators'), $logoName);
+
+            $logoPath = 'uploads/collaborators/' . $logoName;
         }
 
         Collaborator::create([
             'name' => $request->name,
-            'logo' => $logoName
+            'logo' => $logoPath
         ]);
 
-        return redirect()->route('admin.collaborator')->with('success','Collaborator Added Successfully');
+        return redirect()->route('admin.collaborator')->with('success', 'Collaborator Added Successfully');
     }
 
     public function edit($id)
@@ -61,11 +66,11 @@ class CollaboratorController extends Controller
         if ($request->hasFile('logo')) {
 
             // delete old logo
-            if (file_exists(public_path('uploads/collaborators/'.$collaborator->logo))) {
-                unlink(public_path('uploads/collaborators/'.$collaborator->logo));
+            if (file_exists(public_path('uploads/collaborators/' . $collaborator->logo))) {
+                unlink(public_path('uploads/collaborators/' . $collaborator->logo));
             }
 
-            $logoName = time().'.'.$request->logo->extension();
+            $logoName = time() . '.' . $request->logo->extension();
             $request->logo->move(public_path('uploads/collaborators'), $logoName);
         }
 
@@ -74,19 +79,20 @@ class CollaboratorController extends Controller
             'logo' => $logoName
         ]);
 
-        return redirect()->route('admin.collaborator')->with('success','Collaborator Updated Successfully');
+        return redirect()->route('admin.collaborator')->with('success', 'Collaborator Updated Successfully');
     }
 
     public function destroy($id)
     {
         $collaborator = Collaborator::findOrFail($id);
 
-        if (file_exists(public_path('uploads/collaborators/'.$collaborator->logo))) {
-            unlink(public_path('uploads/collaborators/'.$collaborator->logo));
+
+        if ($collaborator->logo && file_exists(public_path($collaborator->logo))) {
+            unlink(public_path($collaborator->logo));
         }
 
         $collaborator->delete();
 
-        return redirect()->route('admin.collaborator')->with('success','Collaborator Deleted Successfully');
+        return redirect()->route('admin.collaborator')->with('success', 'Collaborator Deleted Successfully');
     }
 }

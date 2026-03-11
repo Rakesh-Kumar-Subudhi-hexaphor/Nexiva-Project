@@ -29,50 +29,70 @@
                         @enderror
                     </div>
 
-                    <!-- Image (Only shown for Blog and Video Blog) -->
-                    <div class="col-md-6" id="image-section">
-                        <label class="form-label" for="multicol-username">Image</label>
-                        <div class="input-group">
-                            <input type="file" id="multicol-username" name="image" class="form-control" />
-                        </div>
-
-                        @error('image')
-                            <p class="text-xs text-red-500">{{ $message }}</p>
-                        @enderror
-                        @if ($job->image)
-                            <img src="{{ asset($job->image) }}" alt="Current Image" class="mt-3"
-                                style="max-width: 100px;">
-                        @endif
-                    </div>
-
-                    <div class="col-md-6" id="source-section">
-                        <label class="form-label" for="product-name">Experience</label>
-                        <input type="text" id="product-name" name="experience" value="{{ $job->experience }}"
-                            class="form-control" placeholder="Enter experience" />
-                        @error('experience')
+                <div class="col-md-12" id="category-section">
+                        <label class="form-label" for="type">Select Type</label>
+                        <select name="type" class="form-select" id="type">
+                            <option value="">Select Type</option>
+                            <option value="Full Time" {{ $job->type == 'Full Time' ? 'selected' : '' }}>Full Time</option>
+                            <option value="Part Time" {{ $job->type == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+                            <option value="Contractual" {{ $job->type == 'Contractual' ? 'selected' : '' }}>Contractual</option>
+                            <option value="Internship" {{ $job->type == 'Internship' ? 'selected' : '' }}>Internship</option>
+                        </select>
+                        @error('type')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
 
-
-
-                    <!-- Meta Title Section -->
-                    <div class="col-md-6" id="meta-title-section">
-                        <label class="form-label" for="location">Location</label>
-                        <input type="text" id="location" name="location" class="form-control"
-                            value="{{ old('location', $job->location) }}" placeholder="Enter Meta Title" />
+                    <div class="col-md-12" id="category-section">
+                        <label class="form-label" for="type">Select Location</label>
+                        <select name="location" class="form-select" id="location">
+                            <option value="">Select Location</option>
+                            <option value="In Office" {{ $job->location == 'In Office' ? 'selected' : '' }}>In Office</option>
+                            <option value="Remote" {{ $job->location == 'Remote' ? 'selected' : '' }}>Remote</option>
+                            <option value="Work From Home" {{ $job->location == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
+                        </select>
                         @error('location')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
 
+                     <div class="col-md-12">
+                        <label class="form-label">Requirements</label>
 
+                        <div id="key-points-wrapper">
 
-                    <!-- Description Section -->
+                            @foreach ($job->requirement ?? [] as $index => $point)
+                                <div class="row mb-2 key-point-row">
+
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control serial-number"
+                                            value="{{ $index + 1 }}" readonly>
+                                    </div>
+
+                                    <div class="col-md-9">
+                                        <input type="text" name="requirement[]" class="form-control"
+                                            value="{{ $point }}">
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-danger remove-row">Remove</button>
+                                    </div>
+
+                                </div>
+                            @endforeach
+
+                        </div>
+
+                        <button type="button" class="btn btn-primary mt-2" id="add-key-point">
+                            Add Requirement
+                        </button>
+
+                    </div>
+
                     <div class="col-md-12" id="desc-section">
                         <label class="form-label" for="desc">Description</label>
-                        <textarea name="desc" class="form-control" id="description" cols="30" rows="10">{{ old('desc', $job->desc) }}</textarea>
-                        @error('desc')
+                        <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{ $job->description }}</textarea>
+                        @error('description')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -97,8 +117,71 @@
         CKEDITOR.replace('description');
         CKEDITOR.replace('description');
     </script>
+   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const wrapper = document.getElementById("key-points-wrapper");
+            const addBtn = document.getElementById("add-key-point");
+
+            function updateSerial() {
+
+                document.querySelectorAll(".serial-number").forEach((el, index) => {
+
+                    el.value = index + 1;
+
+                });
+
+            }
+
+            addBtn.addEventListener("click", function() {
+
+                let row = document.createElement("div");
+
+                row.classList.add("row", "mb-2", "key-point-row");
+
+                row.innerHTML = `
+
+<div class="col-md-1">
+<input type="text" class="form-control serial-number" readonly>
+</div>
+
+<div class="col-md-9">
+<input type="text" name="requirement[]" class="form-control"
+placeholder="Enter Requirement">
+</div>
+
+<div class="col-md-2">
+<button type="button" class="btn btn-danger remove-row">Remove</button>
+</div>
+
+`;
+
+                wrapper.appendChild(row);
+
+                updateSerial();
+
+            });
 
 
+            wrapper.addEventListener("click", function(e) {
 
+                if (e.target.classList.contains("remove-row")) {
+
+                    let rows = document.querySelectorAll(".key-point-row");
+
+                    if (rows.length > 1) {
+
+                        e.target.closest(".key-point-row").remove();
+
+                        updateSerial();
+
+                    }
+
+                }
+
+            });
+
+        });
+    </script>
 
 </x-backend.app-layout>

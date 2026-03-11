@@ -13,25 +13,25 @@
                 @csrf
                 <div class="row g-3">
 
-                    <div class="col-md-6" id="source-section" >
+                    {{-- <div class="col-md-6" id="source-section">
                         <label class="form-label" for="product-name">Category</label>
                         <input type="text" id="product-name" name="category" class="form-control"
                             placeholder="Enter category" />
                         @error('category')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    <div class="col-md-6" id="title-section" >
+                    <div class="col-md-6" id="title-section">
                         <label class="form-label" for="product-name">Title</label>
                         <input type="text" id="product-name" name="title" class="form-control"
-                            placeholder="Enter Title"   maxlength="60" />
+                            placeholder="Enter Title" maxlength="60" />
                         @error('title')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <div class="col-md-6" id="image-section" >
+                    <div class="col-md-6" id="image-section">
                         <label class="form-label" for="multicol-username">Image</label>
                         <div class="input-group">
                             <input type="file" id="multicol-username" name="thumbnail" class="form-control" />
@@ -69,70 +69,70 @@
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
-                   <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var tagContainer = document.getElementById('tag-container');
-    var textarea = document.getElementById('tagTextarea');
-    var tagsHiddenInput = document.getElementById('tagsHiddenInput');
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var tagContainer = document.getElementById('tag-container');
+                            var textarea = document.getElementById('tagTextarea');
+                            var tagsHiddenInput = document.getElementById('tagsHiddenInput');
 
-    // Trigger when typing a comma
-    textarea.addEventListener('input', function(event) {
-        let value = textarea.value;
-        if (value.includes(',')) {
-            processInput(value);
-            textarea.value = ''; // clear input after making tags
-        }
-    });
+                            // Trigger when typing a comma
+                            textarea.addEventListener('input', function(event) {
+                                let value = textarea.value;
+                                if (value.includes(',')) {
+                                    processInput(value);
+                                    textarea.value = ''; // clear input after making tags
+                                }
+                            });
 
-    // Handle paste (comma-separated tags)
-    textarea.addEventListener('paste', function(event) {
-        event.preventDefault();
-        var paste = (event.clipboardData || window.clipboardData).getData('text');
-        processInput(paste);
-        textarea.value = '';
-    });
+                            // Handle paste (comma-separated tags)
+                            textarea.addEventListener('paste', function(event) {
+                                event.preventDefault();
+                                var paste = (event.clipboardData || window.clipboardData).getData('text');
+                                processInput(paste);
+                                textarea.value = '';
+                            });
 
-    function processInput(inputText) {
-        inputText.split(',').forEach(function(tag) {
-            addTag(tag.trim());
-        });
-        updateHiddenInput();
-    }
+                            function processInput(inputText) {
+                                inputText.split(',').forEach(function(tag) {
+                                    addTag(tag.trim());
+                                });
+                                updateHiddenInput();
+                            }
 
-    function addTag(tagText) {
-        if (tagText !== "") {
-            var tagElement = document.createElement('div');
-            tagElement.className =
-                'tag-item d-flex gap-2 inline text-primary text-dark px-2 py-1 rounded-full mr-2 mb-2';
-            tagElement.textContent = tagText;
-            tagElement.innerHTML += ' <span class="cursor-pointer ml-1" onclick="removeTag(this)">✖</span>';
-            tagContainer.appendChild(tagElement);
-        }
-    }
+                            function addTag(tagText) {
+                                if (tagText !== "") {
+                                    var tagElement = document.createElement('div');
+                                    tagElement.className =
+                                        'tag-item d-flex gap-2 inline text-primary text-dark px-2 py-1 rounded-full mr-2 mb-2';
+                                    tagElement.textContent = tagText;
+                                    tagElement.innerHTML += ' <span class="cursor-pointer ml-1" onclick="removeTag(this)">✖</span>';
+                                    tagContainer.appendChild(tagElement);
+                                }
+                            }
 
-    tagContainer.addEventListener('click', function(event) {
-        if (event.target.tagName === 'SPAN' && event.target.classList.contains('cursor-pointer')) {
-            removeTag(event.target.parentNode);
-        }
-        updateHiddenInput();
-    });
+                            tagContainer.addEventListener('click', function(event) {
+                                if (event.target.tagName === 'SPAN' && event.target.classList.contains('cursor-pointer')) {
+                                    removeTag(event.target.parentNode);
+                                }
+                                updateHiddenInput();
+                            });
 
-    function removeTag(tagElement) {
-        tagContainer.removeChild(tagElement);
-        updateHiddenInput();
-    }
+                            function removeTag(tagElement) {
+                                tagContainer.removeChild(tagElement);
+                                updateHiddenInput();
+                            }
 
-    function updateHiddenInput() {
-        var tags = Array.from(tagContainer.children)
-            .map(function(tagElement) {
-                return tagElement.textContent.trim().replace(/\s+✖$/, '');
-            })
-            .filter(Boolean);
+                            function updateHiddenInput() {
+                                var tags = Array.from(tagContainer.children)
+                                    .map(function(tagElement) {
+                                        return tagElement.textContent.trim().replace(/\s+✖$/, '');
+                                    })
+                                    .filter(Boolean);
 
-        tagsHiddenInput.value = tags.join(',');
-    }
-});
-</script>
+                                tagsHiddenInput.value = tags.join(',');
+                            }
+                        });
+                    </script>
 
                     <!-- Meta Description Section -->
                     <div class="col-md-6" id="meta-desc-section">

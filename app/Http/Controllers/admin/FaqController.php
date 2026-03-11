@@ -39,7 +39,7 @@ class FaqController extends Controller
     }
 
     // Show edit form
-    public function edit($id)
+    public function show($id)
     {
         $faq = Faq::findOrFail($id);
         return view('admin.faq.edit', compact('faq'));

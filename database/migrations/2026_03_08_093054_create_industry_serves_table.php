@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('tags')->nullable();
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_desc');
             $table->text('short_desc');
             $table->text('description')->nullable();
             $table->timestamps();

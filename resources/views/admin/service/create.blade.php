@@ -52,6 +52,24 @@
                         @enderror
                     </div>
 
+                     <div class="col-md-6" id="meta-title-section">
+                        <label class="form-label" for="location">Meta Title</label>
+                        <input type="text" id="meta_title" name="meta_title" class="form-control"
+                            placeholder="Enter Meta Title" />
+                        @error('meta_title')
+                            <p class="text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                     <div class="col-md-6" id="meta-title-section">
+                        <label class="form-label" for="location">Meta Description</label>
+                        <input type="text" id="meta_desc" name="meta_desc" class="form-control"
+                            placeholder="Enter Meta Description" />
+                        @error('meta_desc')
+                            <p class="text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <div class="col-md-12" id="desc-section">
                         <label class="form-label" for="desc">Description</label>
                         <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>

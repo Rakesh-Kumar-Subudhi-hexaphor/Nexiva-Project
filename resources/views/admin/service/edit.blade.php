@@ -45,7 +45,7 @@
                         @endif
                     </div>
 
-                      <div class="col-md-6" id="image-section">
+                    <div class="col-md-6" id="image-section">
                         <label class="form-label" for="multicol-username">Icon</label>
                         <div class="input-group">
                             <input type="file" id="multicol-username" name="icon" class="form-control" />
@@ -65,6 +65,24 @@
                         <input type="text" id="product-name" name="short_desc" value="{{ $service->short_desc }}"
                             class="form-control" placeholder="Enter short description" />
                         @error('short_desc')
+                            <p class="text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6" id="meta-title-section">
+                        <label class="form-label" for="location">Meta Title</label>
+                        <input type="text" id="meta_title" name="meta_title" class="form-control"
+                            placeholder="Enter Meta Title" value="{{ $service->meta_title }}" />
+                        @error('meta_title')
+                            <p class="text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6" id="meta-title-section">
+                        <label class="form-label" for="location">Meta Description</label>
+                        <input type="text" id="meta_desc" name="meta_desc" class="form-control"
+                            placeholder="Enter Meta Description" value="{{ $service->meta_desc }}" />
+                        @error('meta_desc')
                             <p class="text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>

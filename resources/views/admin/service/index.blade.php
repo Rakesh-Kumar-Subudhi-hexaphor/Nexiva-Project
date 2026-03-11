@@ -54,9 +54,7 @@
                                             <i class="fas fa-trash-alt"></i> Delete
                                         </a>
                                     </div>
-
                                 </td>
-
                             </tr>
                         @endforeach
 

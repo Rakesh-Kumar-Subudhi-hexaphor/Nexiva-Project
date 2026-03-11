@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('image');
             $table->json('key_point');
             $table->text('short_desc');
+            $table->string('meta_title');
+            $table->text('meta_desc');
             $table->text('description');
             $table->timestamps();
         });

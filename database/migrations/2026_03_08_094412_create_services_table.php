@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('icon');
             $table->string('image');
+            $table->string('meta_title');
+            $table->text('meta_desc');
             $table->text('short_desc');
             $table->text('description');
             $table->timestamps();

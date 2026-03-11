@@ -33,7 +33,8 @@ class SliderController extends Controller
 
         Slider::create([
             'title' => $request->title,
-            'image' => $iconPath
+            'image' => $iconPath,
+            'short_desc' => $request->short_desc,
         ]);
 
         return redirect()->route('admin.slider')->with('success', 'Slider created successfully!');

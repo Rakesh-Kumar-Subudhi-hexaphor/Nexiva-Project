@@ -42,7 +42,7 @@ Route::get('/admin/login', [AuthController::class, 'loginView'])->name('admin.lo
 Route::post('admin/login', [AuthController::class, 'adminLogin']);
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
-    Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
     //admin
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
@@ -91,6 +91,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/job/edit/{id}', [JobController::class, 'show'])->name('admin.job.edit');
     Route::post('/admin/job/update/{id}', [JobController::class, 'update'])->name('admin.job.update');
     Route::get('/admin/job/delete/{id}', [JobController::class, 'delete'])->name('admin.job.delete');
+
+    Route::patch('/admin/job/status/{id}', [JobController::class, 'changeStatus'])->name('admin.job.status');
 
     //CareerInquiry
     Route::get('/admin/career-inquiry', [CareerInquiryController::class, 'index'])->name('admin.career-inquiry');
@@ -183,15 +185,15 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/certification/delete/{id}', [CertificationController::class, 'destroy'])->name('admin.certification.delete');
 
     //Industryserve
-    Route::get('/admin/industryserve', [IndustryServeController::class, 'index'])->name('admin.industryserve');
-    Route::get('/admin/industryserve/create', [IndustryServeController::class, 'create'])->name('admin.industryserve.create');
-    Route::post('/admin/industryserve/store', [IndustryServeController::class, 'store'])->name('admin.industryserve.store');
-    Route::get('/admin/industryserve/edit/{id}', [IndustryServeController::class, 'show'])->name('admin.industryserve.edit');
-    Route::post('/admin/industryserve/update/{id}', [IndustryServeController::class, 'update'])->name('admin.industryserve.update');
-    Route::get('/admin/industryserve/delete/{id}', [IndustryServeController::class, 'destroy'])->name('admin.industryserve.delete');
+    Route::get('/admin/industry-serve', [IndustryServeController::class, 'index'])->name('admin.industry-serve');
+    Route::get('/admin/industry-serve/create', [IndustryServeController::class, 'create'])->name('admin.industry-serve.create');
+    Route::post('/admin/industry-serve/store', [IndustryServeController::class, 'store'])->name('admin.industry-serve.store');
+    Route::get('/admin/industry-serve/edit/{id}', [IndustryServeController::class, 'show'])->name('admin.industry-serve.edit');
+    Route::post('/admin/industry-serve/update/{id}', [IndustryServeController::class, 'update'])->name('admin.industry-serve.update');
+    Route::get('/admin/industry-serve/delete/{id}', [IndustryServeController::class, 'destroy'])->name('admin.industry-serve.delete');
 
     //Casestudy
-    Route::get('/admin/casestudy', [CasestudyController::class, 'casestudy'])->name('admin.casestudy');
+    Route::get('/admin/casestudy', [CasestudyController::class, 'index'])->name('admin.casestudy');
     Route::get('/admin/casestudy/create', [CasestudyController::class, 'create'])->name('admin.casestudy.create');
     Route::post('/admin/casestudy/store', [CasestudyController::class, 'store'])->name('admin.casestudy.store');
     Route::get('/admin/casestudy/edit/{id}', [CasestudyController::class, 'show'])->name('admin.casestudy.edit');

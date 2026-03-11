@@ -1,13 +1,46 @@
 <x-backend.app-layout>
     <style>
-        .tag {
+        .switch {
+            position: relative;
             display: inline-block;
-            padding: 2px 5px;
-            margin: 5px;
-            background-color: blue;
-            color: white;
-            border-radius: 5px;
-            font-size: 10px;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #28a745;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
         }
     </style>
     <div class="bg-white m-3 p-3">
@@ -19,19 +52,11 @@
                     <thead>
                         <tr>
                             <th>S/N</th>
-
                             <th>Title</th>
-
-
                             <th>Experience</th>
-
-
                             <th>Location</th>
-                            {{-- <th>Description</th> --}}
+                            <th>Status</th>
                             <th>Action</th>
-
-
-
                         </tr>
                     </thead>
                     <tbody>
@@ -39,8 +64,20 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $job->title }}</td>
-                                <td>{{ $job->experience }}</td>
+                                <td>{{ $job->type }}</td>
                                 <td>{{ $job->location }}</td>
+                                <td>
+                                    <form action="{{ route('admin.job.status', $job->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <label class="switch">
+                                            <input type="checkbox" name="status" onchange="this.form.submit()"
+                                                {{ $job->status == 'active' ? 'checked' : '' }}>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </form>
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-start" style="gap: 7px;">
                                         <a href="{{ route('admin.job.edit', $job->id) }}" class="btn btn-info mr-2">

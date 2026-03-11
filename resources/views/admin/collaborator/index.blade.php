@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($collaborator as $asso)
+                        @foreach ($collaborators as $asso)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><a href="{{ asset($asso->logo) }}" target="_blank" rel="noopener noreferrer"><img

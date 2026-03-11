@@ -2,7 +2,7 @@
 
 
     <div class="app-brand demo ">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
 
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item">
-            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+            <a href="{{ route('admin.dashboard') }}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
             </a>
@@ -78,26 +78,120 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.slider') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Slider">Slider</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.collaborator') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Trusted By">Trusted By</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.certification') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Certification">Certification</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.faq') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="FAQ">FAQ</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.blog') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Blog">Blog</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.service') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Service">Service</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.solution') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Solution">Solution</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.job') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Career">Career</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('admin.industry-serve') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Industry We Serve">Industry We Serve</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.newsletter') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Newsletter">Newsletter</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.seo') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Seo">Seo</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.team') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Team">Team</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.breadcrumb') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Breadcrumb">Breadcrumb</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.testimonial') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Testimonial">Testimonial</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.casestudy') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Case Study">Case Study</div>
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('admin.policy') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div class="text-truncate" data-i18n="Policy">Policy</div>
+            </a>
+        </li>
 
 
 
 
-
-       
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bx-check-shield'></i>
-                <div class="text-truncate" data-i18n="Roles & Permissions">Roles & Permissions</div>
+                <div class="text-truncate" data-i18n="Inquires">Inquires</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{route('admin.role')}}" class="menu-link">
-                        <div class="text-truncate" >Roles</div>
+                    <a href="{{ route('admin.contact') }}" class="menu-link">
+                        <div class="text-truncate">Contact</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{route('admin.user')}}" class="menu-link">
-                        <div class="text-truncate" >User</div>
+                    <a href="{{ route('admin.career-inquiry') }}" class="menu-link">
+                        <div class="text-truncate">Career</div>
                     </a>
                 </li>
 

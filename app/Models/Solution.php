@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Solution extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'slug', 'description', 'icon', 'image', 'short_desc' ,'key_point'];
+    protected $fillable = ['title', 'slug', 'description', 'icon', 'image', 'short_desc', 'meta_title', 'meta_desc', 'key_point'];
      protected $casts = [
         'key_point' => 'array'
     ];

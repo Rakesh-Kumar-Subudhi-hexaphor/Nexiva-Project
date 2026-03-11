@@ -9,7 +9,7 @@
 
         <div class="card mb-4">
 
-            <form class="card-body" action="{{ route('admin.certiification.update', $certification->id) }}" method="POST"
+            <form class="card-body" action="{{ route('admin.certification.update', $certification->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">

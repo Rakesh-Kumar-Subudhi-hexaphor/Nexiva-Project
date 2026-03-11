@@ -64,18 +64,4 @@
             </form>
         </div>
     </div>
-
-
-    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
-    <script>
-        CKEDITOR.plugins.addExternal('youtube', './youtube/');
-        CKEDITOR.editorConfig = function(config) {
-            config.extraPlugins = 'youtube';
-        };
-        CKEDITOR.replace('description');
-        CKEDITOR.replace('description');
-    </script>
-
-
-
 </x-backend.app-layout>

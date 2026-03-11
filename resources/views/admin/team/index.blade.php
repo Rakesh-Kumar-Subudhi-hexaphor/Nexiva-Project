@@ -23,7 +23,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td><img src="{{ asset($team->image) }}" class="w-px-40 h-auto " alt="team_image">
                                 </td>
-                                <td>{{ $team->name }}</td>
+                                <td>{{ $team->title }}</td>
                                 <td>{{ $team->email }}</td>
                                 <td>{{ $team->designation }}</td>
                                 <td>{!! $team->short_desc !!}</td>

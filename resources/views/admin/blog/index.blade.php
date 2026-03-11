@@ -20,7 +20,7 @@
                         <tr>
                             <th>S/N</th>
 
-                            <th>Category</th>
+                            {{-- <th>Category</th> --}}
 
                             <th>Title</th>
 
@@ -41,13 +41,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
 
-                                <td>
+                                {{-- <td>
                                     @if ($blog->category)
                                         {{ $blog->category }}
                                     @else
                                         <p class="text-danger">No category</p>
                                     @endif
-                                </td>
+                                </td> --}}
 
 
 

@@ -6,7 +6,7 @@
 
             <form class="card-body" action="{{ route('admin.faq.update', $faq->id) }}" method="POST">
                 @csrf
-                @method('PUT')
+             
 
                 <div class="row g-3">
 
@@ -61,7 +61,7 @@
                         Update
                     </button>
 
-                    <a href="{{ route('admin.faq.index') }}" class="btn btn-label-secondary">
+                    <a href="{{ route('admin.faq') }}" class="btn btn-label-secondary">
                         Cancel
                     </a>
                 </div>

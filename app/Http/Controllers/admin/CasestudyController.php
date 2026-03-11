@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CasestudyController extends Controller
 {
-     public function index()
+    public function index()
     {
         $casestudies = Casestudy::latest()->get();
         return view('admin.casestudy.index', compact('casestudies'));
@@ -28,33 +28,53 @@ class CasestudyController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|unique:projects,slug',
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'meta_title' => 'nullable|max:255',
+            'meta_desc' => 'nullable',
             'description' => 'required',
         ]);
 
-        $imageName = null;
+        $imagePath = null;
+        $iconPath = null;
 
+        // Upload Image
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/casestudies'), $imageName);
+
+            $imageName = rand() . '_image.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads/casestudy/images'), $imageName);
+
+            $imagePath = 'uploads/casestudy/images/' . $imageName;
         }
 
-         $slug = Str::slug($request->title);
-         
+        // Upload Icon
+        if ($request->hasFile('icon')) {
+
+            $iconName = rand() . '_icon.' . $request->icon->extension();
+
+            $request->icon->move(public_path('uploads/casestudy/icons'), $iconName);
+
+            $iconPath = 'uploads/casestudy/icons/' . $iconName;
+        }
+
+        $slug = Str::slug($request->title);
+
         Casestudy::create([
             'title' => $request->title,
             'slug' => $slug,
-            'image' => $imageName,
-            'service' => $request->service, 
+            'image' => $imagePath,
+            'icon' => $iconPath,
+            'service' => $request->service,
             'url' => $request->url,
             'client' => $request->client,
             'date' => $request->date,
+            'meta_title' => $request->meta_title,
+            'meta_desc' => $request->meta_desc,
             'short_desc' => $request->short_desc,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.casestudies')->with('success','Casestudy Created Successfully');
+        return redirect()->route('admin.casestudy')->with('success', 'Casestudy Created Successfully');
     }
 
     // Show edit form
@@ -63,7 +83,7 @@ class CasestudyController extends Controller
         $casestudy = Casestudy::findOrFail($id);
         $services = Service::all();
 
-        return view('admin.casestudy.edit', compact('casestudy','services'));
+        return view('admin.casestudy.edit', compact('casestudy', 'services'));
     }
 
     // Update data
@@ -73,38 +93,62 @@ class CasestudyController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|unique:casestudies,slug,'.$id,
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'meta_title' => 'nullable|max:255',
+            'meta_desc' => 'nullable',
             'description' => 'required',
         ]);
 
-        $imageName = $casestudy->image;
+    
+        $imagePath = $casestudy->image;
+        $iconPath = $casestudy->icon;
 
+        // Update Image
         if ($request->hasFile('image')) {
 
-            // delete old image
-            if (file_exists(public_path('uploads/casestudies/'.$casestudy->image))) {
-                unlink(public_path('uploads/casestudies/'.$casestudy->image));
+            if ($casestudy->image && file_exists(public_path($casestudy->image))) {
+                unlink(public_path($casestudy->image));
             }
 
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/casestudies'), $imageName);
+            $imageName = rand() . '_image.' . $request->image->extension();
+
+            $request->image->move(public_path('uploads/casestudy/images'), $imageName);
+
+            $imagePath = 'uploads/casestudy/images/' . $imageName;
         }
-         $slug = Str::slug($request->title);
+
+        // Update Icon
+        if ($request->hasFile('icon')) {
+
+            if ($casestudy->icon && file_exists(public_path($casestudy->icon))) {
+                unlink(public_path($casestudy->icon));
+            }
+
+            $iconName = rand() . '_icon.' . $request->icon->extension();
+
+            $request->icon->move(public_path('uploads/casestudy/icons'), $iconName);
+
+            $iconPath = 'uploads/casestudy/icons/' . $iconName;
+        }
+
+        $slug = Str::slug($request->title);
 
         $casestudy->update([
             'title' => $request->title,
             'slug' => $slug,
-            'image' => $imageName,
+            'image' => $imagePath,
+            'icon' => $iconPath,
             'service' => $request->service,
             'url' => $request->url,
             'client' => $request->client,
             'date' => $request->date,
             'short_desc' => $request->short_desc,
+            'meta_title' => $request->meta_title,
+            'meta_desc' => $request->meta_desc,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.casestudies')->with('success','Casestudy Updated Successfully');
+        return redirect()->route('admin.casestudy')->with('success', 'Casestudy Updated Successfully');
     }
 
     // Delete record
@@ -112,12 +156,16 @@ class CasestudyController extends Controller
     {
         $casestudy = Casestudy::findOrFail($id);
 
-        if (file_exists(public_path('uploads/casestudies/'.$casestudy->image))) {
-            unlink(public_path('uploads/casestudies/'.$casestudy->image));
+        if ($casestudy->image && file_exists(public_path($casestudy->image))) {
+            unlink(public_path($casestudy->image));
+        }
+
+        if ($casestudy->icon && file_exists(public_path($casestudy->icon))) {
+            unlink(public_path($casestudy->icon));
         }
 
         $casestudy->delete();
 
-        return redirect()->route('admin.casestudies')->with('success','Casestudy Deleted Successfully');
+        return redirect()->route('admin.casestudy')->with('success', 'Casestudy Deleted Successfully');
     }
 }

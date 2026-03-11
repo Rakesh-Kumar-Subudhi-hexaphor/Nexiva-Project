@@ -27,21 +27,25 @@ class CertificationController extends Controller
         ]);
 
         $imageName = null;
-
+        // Upload Image
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
+
+            $imageName = rand().'_image.'.$request->image->extension();
+
             $request->image->move(public_path('uploads/certifications'), $imageName);
+
+            $imagePath = 'uploads/certifications/'.$imageName;
         }
 
         Certification::create([
             'name' => $request->name,
-            'image' => $imageName
+            'image' => $imagePath
         ]);
 
         return redirect()->route('admin.certification')->with('success','Certification Added Successfully');
     }
 
-    public function edit($id)
+    public function show($id)
     {
         $certification = Certification::findOrFail($id);
         return view('admin.certification.edit', compact('certification'));
@@ -56,22 +60,24 @@ class CertificationController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
-        $imageName = $certification->image;
+        $imagePath = $certification->image;
 
-        if ($request->hasFile('image')) {
+       if ($request->hasFile('image')) {
 
-            // delete old image
-            if (file_exists(public_path('uploads/certifications/'.$certification->image))) {
-                unlink(public_path('uploads/certifications/'.$certification->image));
+            if ($certification->image && file_exists(public_path($certification->image))) {
+                unlink(public_path($certification->image));
             }
 
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = rand().'_image.'.$request->image->extension();
+
             $request->image->move(public_path('uploads/certifications'), $imageName);
+
+            $imagePath = 'uploads/certifications/'.$imageName;
         }
 
         $certification->update([
             'name' => $request->name,
-            'image' => $imageName
+            'image' => $imagePath
         ]);
 
         return redirect()->route('admin.certification')->with('success','Certification Updated Successfully');
@@ -81,8 +87,9 @@ class CertificationController extends Controller
     {
         $certification = Certification::findOrFail($id);
 
-        if (file_exists(public_path('uploads/certifications/'.$certification->image))) {
-            unlink(public_path('uploads/certifications/'.$certification->image));
+       
+        if ($certification->image && file_exists(public_path($certification->image))) {
+            unlink(public_path($certification->image));
         }
 
         $certification->delete();
