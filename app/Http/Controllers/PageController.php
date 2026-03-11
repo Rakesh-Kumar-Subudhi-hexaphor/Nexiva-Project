@@ -2,17 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Casestudy;
+use App\Models\Certification;
+use App\Models\Collaborator;
+use App\Models\Faq;
+use App\Models\IndustryServe;
+use App\Models\Job;
+use App\Models\Policy;
+use App\Models\Service;
+use App\Models\Slider;
+use App\Models\Solution;
+use App\Models\Team;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $sliders = Slider::latest()->get();
+        $services = Service::latest()->take(6)->get();
+        $solutions = Solution::latest()->take(6)->get();
+        $casestudies = Casestudy::latest()->take(6)->get();
+        $industries = IndustryServe::latest()->take(6)->get();
+        $collaborator = Collaborator::all();
+        $blogs = Blog::latest()->take(3)->get();
+        $testimonials = Testimonial::latest()->get();
+        return view('frontend.index',compact('sliders','services','solutions','casestudies','industries','collaborator','blogs','testimonials'));
     }
     public function about()
     {
-        return view('frontend.about');
+        $testimonials = Testimonial::latest()->get();
+        $certificates = Certification::all();
+        return view('frontend.about',compact('testimonials','certificates'));
     }
     public function contact()
     {
@@ -20,45 +43,67 @@ class PageController extends Controller
     }
     public function blog()
     {
-        return view('frontend.blog');
+        $blogs = Blog::latest()->get();
+        return view('frontend.blog',compact('blogs'));
     }
-    public function blogDetail()
+    public function blogDetail($slug)
     {
-        return view('frontend.blog-detail');
+        $blog = Blog::where('slug',$slug)->first();
+        return view('frontend.blog-detail',compact('blog'));
     }
     public function service()
     {
-        return view('frontend.service');
+        $services = Service::all();
+        return view('frontend.service',compact('services'));
     }
-    public function serviceDetail()
+    public function serviceDetail($slug)
     {
-        return view('frontend.service-detail');
+        $service = Service::where('slug',$slug)->first();
+        return view('frontend.service-detail',compact('service'));
     }
     public function solution()
     {
-        return view('frontend.solution');
+        $solutions = Solution::all();
+        return view('frontend.solution',compact('solutions'));
     }
-    public function solutionDetail()
+    public function solutionDetail($slug)
     {
-        return view('frontend.solution-detail');
+        $solution = Solution::where('slug',$slug)->first();
+        return view('frontend.solution-detail',compact('solution'));
     }
     public function casestudy()
     {
-        return view('frontend.casestudy');
+        $casestudies = Casestudy::latest()->get();
+        return view('frontend.casestudy',compact('casestudies'));
     }
-     public function faq(){
-        return view('frontend.faq');
+        public function casestudyDetail($slug)
+    {
+        $casestudy = Casestudy::where('slug',$slug)->first();
+        return view('frontend.casestudy-detail',compact('casestudy'));
+    }
+     public function faq()
+     {
+        $faqs = Faq::where('type','main')->get();
+        return view('frontend.faq',compact('faqs'));
     }
      public function job(){
-        return view('frontend.job');
+        $jobs = Job::where('status','active')->latest()->get();
+        $faqs = Faq::where('type','career')->get();
+        return view('frontend.job',compact('jobs','faqs'));
     }
-     public function policy(){
-        return view('frontend.policy');
+     public function policy($slug)
+     {
+       $policy = Policy::where('slug',$slug)->first();
+        return view('frontend.policy',compact('policy'));
     }
-     public function team(){
-        return view('frontend.team');
+     public function team()
+     {
+        $teams = Team::all();
+        return view('frontend.team',compact('teams'));
     }
-     public function industryServe(){
-        return view('frontend.industry-serve');
+     public function industryServe()
+     {
+        $industries = IndustryServe::all();
+        return view('frontend.industry-serve',compact('industries'));
     }
 }
