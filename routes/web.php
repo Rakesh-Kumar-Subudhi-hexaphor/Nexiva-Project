@@ -21,6 +21,7 @@ use App\Http\Controllers\admin\TeamController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.auth.login');
-});
+Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/blog', [PageController::class, 'blog'])->name('blog');
+Route::get('/blog/detail/{slug}', [PageController::class, 'blogDetail'])->name('blog.detail');
+Route::get('/service', [PageController::class, 'service'])->name('service');
+Route::get('/service/detail/{slug}', [PageController::class, 'serviceDetail'])->name('service.detail');
+Route::get('/solution', [PageController::class, 'solution'])->name('solution');
+Route::get('/solution/detail/{slug}', [PageController::class, 'solutionDetail'])->name('solution.detail');
+Route::get('/casestudy', [PageController::class, 'casestudy'])->name('casestudy');
+Route::get('/casestudy/detail/{slug}', [PageController::class, 'casestudyDetail'])->name('casestudy.detail');
+Route::get('/job', [PageController::class, 'job'])->name('job');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/team', [PageController::class, 'team'])->name('team');
+Route::get('/policy/{slug}', [PageController::class, 'policy'])->name('policy');
+Route::get('/industry-serve', [PageController::class, 'industryServe'])->name('industry-serve');
+
 Route::get('/admin/login', [AuthController::class, 'loginView'])->name('admin.login');
 Route::post('admin/login', [AuthController::class, 'adminLogin']);
 Route::group(['middleware' => 'auth:admin'], function () {
