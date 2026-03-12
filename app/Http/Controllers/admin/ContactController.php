@@ -14,7 +14,7 @@ class ContactController extends Controller
         return view('admin.contact.index', compact('contacts'));
     }
 
-    public function contact_store(Request $request)
+    public function store(Request $request)
     {
         // Validate the request data
         $request->validate([

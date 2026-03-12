@@ -1,39 +1,9 @@
 <x-frontend.app-layout>
+    @php
+        $pageId = 3;
+    @endphp
     <main>
-        <!-- Blog Breadcrumb area start -->
-        <div class="bd-ud-breadcrumb__area bg-css blog-breadcrumb" data-background="assets/img/bg/ud-breadcrumb.jpg">
-            <div class="bd-ud-breadcrumb-shape-1 p-absolute w-img">
-                <img src="assets/img/shape/breadcrumb-shape-1.png" alt="breadcrumb-shape-1">
-            </div>
-            <div class="bd-ud-breadcrumb-shape-2 p-absolute w-img">
-                <img src="assets/img/shape/breadcrumb-shape-2.png" alt="breadcrumb-shape-1">
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="bd-ud-breadcrumb__wrapper">
-                            <div class="bd-ud-breadcrumb__title">
-                                <h2 class="text-white">Technology Insights & Trends</h2>
-                                <p class="blog-hero-subtitle text-white">
-                                    Stay updated with the latest technology insights, industry trends, and best
-                                    practices from Nexiva's experts.
-                                </p>
-                            </div>
-                            <div class="bd-ud-breadcrumb__menu">
-                                <nav aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
-                                    <ul class="trail-items">
-                                        <li class="trail-item trail-begin"><span><a href="index.html">Nexiva</a></span>
-                                        </li>
-                                        <li class="trail-item trail-end"><span>Blog</span></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog Breadcrumb area end -->
+        <x-frontend.banner :pageId="$pageId" title="Our Blog" />
 
         <!-- Blog Section Start -->
         <section class="blog-section section-padding fix">
@@ -51,8 +21,7 @@
                 <!-- Blog Grid -->
                 <div class="row g-4 blog-grid">
                     @foreach ($blogs as $blog)
-                        <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->index * 0.1 }}"
-                            >
+                        <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->index * 0.1 }}">
                             <div class="blog-card">
                                 <div class="blog-image">
                                     <img src="{{ asset($blog->thumbnail) }}" alt="{{ $blog->slug }}">

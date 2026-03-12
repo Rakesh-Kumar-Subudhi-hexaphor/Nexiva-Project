@@ -33,20 +33,20 @@
                                 {{ isset($breadcrumb) && $breadcrumb->page_id == 6 ? 'selected' : '' }}>Career Page
                             </option>
                             <option value="7"
-                                {{ isset($breadcrumb) && $breadcrumb->page_id == 7 ? 'selected' : '' }}>Achievement
+                                {{ isset($breadcrumb) && $breadcrumb->page_id == 7 ? 'selected' : '' }}>Casestudy
                                 Page</option>
                             <option value="8"
-                                {{ isset($breadcrumb) && $breadcrumb->page_id == 8 ? 'selected' : '' }}>Event Page
+                                {{ isset($breadcrumb) && $breadcrumb->page_id == 8 ? 'selected' : '' }}>FAQ Page
                             </option>
                             <option value="9"
-                                {{ isset($breadcrumb) && $breadcrumb->page_id == 9 ? 'selected' : '' }}>Recent Work
+                                {{ isset($breadcrumb) && $breadcrumb->page_id == 9 ? 'selected' : '' }}>Industry Serve
                                 Page</option>
                             <option value="10"
-                                {{ isset($breadcrumb) && $breadcrumb->page_id == 10 ? 'selected' : '' }}>Terms &
-                                Condition Page</option>
+                                {{ isset($breadcrumb) && $breadcrumb->page_id == 10 ? 'selected' : '' }}>Solution Page
+                            </option>
                             <option value="11"
-                                {{ isset($breadcrumb) && $breadcrumb->page_id == 11 ? 'selected' : '' }}>Terms of
-                                Sales Page</option>
+                                {{ isset($breadcrumb) && $breadcrumb->page_id == 11 ? 'selected' : '' }}>Team Page
+                            </option>
 
                         </select>
                     </div>

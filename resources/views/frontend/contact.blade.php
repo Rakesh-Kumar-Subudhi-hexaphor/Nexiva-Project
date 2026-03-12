@@ -1,33 +1,9 @@
 <x-frontend.app-layout>
+      @php
+      $pageId=5;
+   @endphp
        <main>
-      <!-- Updated Breadcrumb area start -->
-      <div class="bd-ud-breadcrumb__area bg-css" data-background="assets/img/bg/ud-breadcrumb.jpg">
-         <div class="bd-ud-breadcrumb-shape-1 p-absolute w-img">
-            <img src="assets/img/shape/breadcrumb-shape-1.png" alt="breadcrumb-shape-1">
-         </div>
-         <div class="bd-ud-breadcrumb-shape-2 p-absolute w-img">
-            <img src="assets/img/shape/breadcrumb-shape-2.png" alt="breadcrumb-shape-1">
-         </div>
-         <div class="container">
-            <div class="row">
-               <div class="col-xl-12">
-                  <div class="bd-ud-breadcrumb__wrapper">
-                     <div class="bd-ud-breadcrumb__title">
-                        <h2>Contact us</h2>
-                     </div>
-                     <div class="bd-ud-breadcrumb__menu">
-                        <nav aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
-                           <ul class="trail-items">
-                              <li class="trail-item trail-begin"><span><a href="index.html">Nexiva</a></span></li>
-                              <li class="trail-item trail-end"><span>contact us</span></li>
-                           </ul>
-                        </nav>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+   <x-frontend.banner :pageId="$pageId" title="Contact Us" />
       <!-- Updated Breadcrumb area end -->
       <!-- Contact area start -->
       <section class="contact__area pt-40 pb-60">
@@ -74,40 +50,35 @@
                </div>
                <div class="col-lg-6">
                   <div class="contact__form bd-ud-contact-form mb-60">
-                     <form action="#">
+                     <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
                         <div class="row">
                            <div class="col-lg-6">
                               <div class="contact__from-input">
-                                 <input type="text" placeholder="Name">
+                                 <input type="text" placeholder="Name" name="name" required>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="contact__from-input">
-                                 <input type="text" placeholder="Email">
+                                 <input type="email" placeholder="Email" name="email" required>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="contact__from-input">
-                                 <input type="text" placeholder="Number">
+                                 <input type="number" placeholder="Number" name="phone" required>
                               </div>
                            </div>
                            <div class="col-lg-6">
-                              <div class="contact__select mb-20">
-                                 <select>
-                                    <option value="0">Select</option>
-                                    <option value="1">Payment</option>
-                                    <option value="2">Information</option>
-                                    <option value="3">Option</option>
-                                 </select>
+                              <div class="contact__from-input">
+                                 <input type="text" placeholder="Subject" name="subject">
                               </div>
                            </div>
                            <div class="col-lg-12">
                               <div class="contact__from-input">
-                                 <textarea name="Message" id="Message" placeholder="Write Massage"></textarea>
+                                 <textarea name="message" id="Message" placeholder="Write Massage" required></textarea>
                               </div>
                            </div>
                            <div class="col-12">
-
                               <button class="comment__btn e-btn" type="submit">Send a Massage</button>
                            </div>
                         </div>
@@ -128,7 +99,7 @@
                      <div class="contact__cta-content mb-30">
                         <div class="cta-contact__info">
                            <div class="cta__number-icon">
-                              <img src="assets/img/about/icon/about-phn.png" alt="">
+                              <img src="{{ asset('frontend/assets/img/about/icon/about-phn.png') }}" alt="">
                            </div>
                            <div class="cta__number-text">
                               <span>Get a Free Consultation</span>

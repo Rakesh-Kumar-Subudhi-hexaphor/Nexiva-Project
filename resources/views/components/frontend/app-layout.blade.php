@@ -1,26 +1,41 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Nexiva Technologies Private Limited</title>
-    <meta name="description" content="">
+    @if (isset($metaTitle))
+        <title>{{ $metaTitle ?? 'Nexiva Technologies Private Limited' }}</title>
+        <meta name="description" content="{{ $metaDescription }}">
+    @elseif(isset($pageId))
+        @php
+            $seo = \App\Models\Seo::where('page_id', $pageId)->first();
+        @endphp
+
+        @if ($seo)
+            <title>{{ $seo->meta_title ?? 'Nexiva Technologies Private Limited' }}</title>
+            <meta name="description" content="{{ $seo->meta_description }}">
+        @endif
+    @else
+        <title>Nexiva Technologies Private Limited</title>
+
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend/assets/img/favicon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/meanmenu.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/swiper-bundle.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/backtotop.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/font-awesome-pro.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/spacing.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/meanmenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/swiper-bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/backtotop.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome-pro.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/spacing.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
@@ -122,7 +137,8 @@
                     <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                         <div class="offcanvas__logo logo">
                             <a href="index.html">
-                                <img src="{{asset('frontend/assets/img/logo/Nexiva1-removebg.png')}}" alt="logo not found">
+                                <img src="{{ asset('frontend/assets/img/logo/Nexiva1-removebg.png') }}"
+                                    alt="logo not found">
                             </a>
                         </div>
                         <div class="offcanvas__close">
@@ -200,22 +216,22 @@
     <!-- Back to top end -->
     <!-- JS here -->
     <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="{{asset('frontend/assets/js/vendor/jquery.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/vendor/waypoints.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/bootstrap-bundle.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/meanmenu.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/swiper-bundle.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/magnific-popup.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/parallax.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/backtotop.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/counterup.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/js_circle-progress.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/wow.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/slick.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/nice-select.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/isotope-pkgd.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/imagesloaded-pkgd.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/main.js')}}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/waypoints.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/bootstrap-bundle.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/meanmenu.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/swiper-bundle.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/magnific-popup.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/parallax.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/backtotop.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/counterup.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/js_circle-progress.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/wow.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/nice-select.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/isotope-pkgd.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/imagesloaded-pkgd.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"6f953b64e31643ecb01834e55bdccbac","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
@@ -247,4 +263,5 @@
         </script>
     @endif
 </body>
+
 </html>

@@ -24,9 +24,11 @@
                                 4 => 'Service Page',
                                 5 => 'Contact Page',
                                 6 => 'Career Page',
-                                7 => 'Achievement Page',
-                                8 => 'Event Page',
-                                9 => 'Recent Work Page',
+                                7 => 'Casestudy Page',
+                                8 => 'Faq Page',
+                                9 => 'Industry Serve Page',
+                                10 => 'Solution Page',
+                                11 => 'Team Page',
                             ];
                         @endphp
                         @foreach ($seos as $seo)

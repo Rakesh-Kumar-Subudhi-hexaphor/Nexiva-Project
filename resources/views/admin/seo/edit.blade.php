@@ -29,16 +29,14 @@
                                 Page</option>
                             <option value="6" {{ isset($seo) && $seo->page_id == 6 ? 'selected' : '' }}>Career Page
                             </option>
-                            <option value="7" {{ isset($seo) && $seo->page_id == 7 ? 'selected' : '' }}>Achievement
+                            <option value="7" {{ isset($seo) && $seo->page_id == 7 ? 'selected' : '' }}>Casestudy
                                 Page</option>
-                            <option value="8" {{ isset($seo) && $seo->page_id == 8 ? 'selected' : '' }}>Event Page
+                            <option value="8" {{ isset($seo) && $seo->page_id == 8 ? 'selected' : '' }}>FAQ Page
                             </option>
-                            <option value="9" {{ isset($seo) && $seo->page_id == 9 ? 'selected' : '' }}>Recent Work
+                            <option value="9" {{ isset($seo) && $seo->page_id == 9 ? 'selected' : '' }}>Industry Serve
                                 Page</option>
-                            <option value="10" {{ isset($seo) && $seo->page_id == 10 ? 'selected' : '' }}>Terms &
-                                Condition Page</option>
-                            <option value="11" {{ isset($seo) && $seo->page_id == 11 ? 'selected' : '' }}>Terms &
-                                Sales Page</option>
+                            <option value="10" {{ isset($seo) && $seo->page_id == 10 ? 'selected' : '' }}>Solution Page</option>
+                            <option value="11" {{ isset($seo) && $seo->page_id == 11 ? 'selected' : '' }}>Team Page</option>
 
                         </select>
                     </div>

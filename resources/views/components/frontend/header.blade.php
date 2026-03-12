@@ -8,8 +8,8 @@
                <div class="row align-items-center">
                   <div class="col-xl-2 col-6">
                      <div class="bd-ud-logo">
-                        <a href="index.html">
-                           <img src="assets/img/logo/Nexiva1-removebg.png" alt="bd-ud-logo" class="site-logo">
+                        <a href="{{ route('index') }}">
+                           <img src="{{ asset('frontend/assets/img/logo/Nexiva1-removebg.png') }}" alt="bd-ud-logo" class="site-logo">
                         </a>
                      </div>
                   </div>
@@ -18,16 +18,16 @@
                         <nav id="mobile-menu">
                            <ul>
                               <li class="">
-                                 <a href="index.html" class="nav-link active">Home</a>
+                                 <a href="{{ route('index') }}" class="nav-link active">Home</a>
                               </li>
                               <li class="">
-                                 <a href="about-2.html" class="nav-link ">About Us</a>
+                                 <a href="{{ route('about') }}" class="nav-link ">About Us</a>
                               </li>
                               <li class="">
-                                 <a href="services-2.html" class="nav-link ">Services</a>
+                                 <a href="{{ route('service') }}" class="nav-link ">Services</a>
                               </li>
                               <li class="">
-                                 <a href="solution.html" class="nav-link ">Solutions</a>
+                                 <a href="{{ route('solution') }}" class="nav-link ">Solutions</a>
                                  <!-- <ul class="submenu">
                                     <li><a href="service.html">Service</a></li>
                                     <li><a href="service-details.html">Service details</a></li>
@@ -36,7 +36,7 @@
                                  </ul> -->
                               </li>
                               <li>
-                                 <a href="career.html" class="nav-link ">Careers</a>
+                                 <a href="{{ route('job') }}" class="nav-link ">Careers</a>
 
                               </li>
                               <!-- <li>
@@ -44,11 +44,11 @@
 
                               </li> -->
                               <li>
-                                 <a href="blog.html" class="nav-link ">Blog</a>
+                                 <a href="{{ route('blog') }}" class="nav-link ">Blog</a>
 
                               </li>
                               <li>
-                                 <a href="contact.html" class="nav-link ">Contact Us</a>
+                                 <a href="{{ route('contact') }}" class="nav-link ">Contact Us</a>
 
                               </li>
                               <!-- <li class="menu-item-has-children">
@@ -73,7 +73,7 @@
                            <div class="bd-ud-header-bottom-cta-item">
                               <div class="bd-ud-header__toggle">
                                  <button class="sidebar__toggle">
-                                    <img src="assets/img/icon/svg/hambergar.svg" alt="hambergar" class="hamburger-icon">
+                                    <img src="{{asset('frontend/assets/img/icon/svg/hambergar.svg')}}" alt="hambergar" class="hamburger-icon">
                                  </button>
                               </div>
                            </div>
@@ -103,7 +103,7 @@
 
                            <!-- Button only above 1200px -->
                            <div class="bd-ud-header-bottom-cta-item d-none d-xl-block">
-                              <a class="bd-ud-btn" href="contact.html">
+                              <a class="bd-ud-btn" href="{{ route('contact') }}">
                                  GET APPOINTMENT
                                  <i class="fa-sharp fa-solid fa-chevron-right"></i>
                               </a>
@@ -113,7 +113,7 @@
                            <div class="bd-ud-header-bottom-cta-item d-block d-xl-none">
                               <div class="bd-ud-header__toggle">
                                  <button class="sidebar__toggle">
-                                    <img src="assets/img/icon/svg/hambergar.svg" alt="menu">
+                                    <img src="{{asset('frontend/assets/img/icon/svg/hambergar.svg')}}" alt="menu">
                                  </button>
                               </div>
                            </div>
@@ -125,7 +125,7 @@
                            <!-- <div class="bd-ud-header-bottom-cta-item">
                               <div class="bd-ud-header__toggle">
                                  <button class="sidebar__toggle">
-                                    <img src="assets/img/icon/svg/hambergar.svg" alt="hambergar">
+                                    <img src="{{asset('frontend/assets/img/icon/svg/hambergar.svg')}}" alt="hambergar">
                                  </button>
                               </div>
                            </div> -->

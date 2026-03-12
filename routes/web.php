@@ -40,6 +40,7 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/career-post-store', [CareerInquiryController::class, 'store'])->name('career.post.store');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/blog/detail/{slug}', [PageController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/service', [PageController::class, 'service'])->name('service');
@@ -53,6 +54,8 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/policy/{slug}', [PageController::class, 'policy'])->name('policy');
 Route::get('/industry-serve', [PageController::class, 'industryServe'])->name('industry-serve');
+Route::post('/newsletter/store', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
+
 
 Route::get('/admin/login', [AuthController::class, 'loginView'])->name('admin.login');
 Route::post('admin/login', [AuthController::class, 'adminLogin']);
@@ -113,7 +116,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
     //CareerInquiry
     Route::get('/admin/career-inquiry', [CareerInquiryController::class, 'index'])->name('admin.career-inquiry');
     Route::get('/admin/career-inquiry/create', [CareerInquiryController::class, 'create'])->name('admin.career-inquiry.create');
-    Route::post('/admin/career-inquiry/store', [CareerInquiryController::class, 'store'])->name('admin.career-inquiry.store');
     Route::get('/admin/career-inquiry/edit/{id}', [CareerInquiryController::class, 'show'])->name('admin.career-inquiry.edit');
     Route::post('/admin/career-inquiry/update/{id}', [CareerInquiryController::class, 'update'])->name('admin.career-inquiry.update');
     Route::get('/admin/career-inquiry/delete/{id}', [CareerInquiryController::class, 'delete'])->name('admin.career-inquiry.delete');
@@ -179,7 +181,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
     //Newsletter
     Route::get('/admin/newsletter', [NewsletterController::class, 'index'])->name('admin.newsletter');
     Route::get('/admin/newsletter/create', [NewsletterController::class, 'create'])->name('admin.newsletter.create');
-    Route::post('/admin/newsletter/store', [NewsletterController::class, 'store'])->name('admin.newsletter.store');
     Route::get('/admin/newsletter/edit/{id}', [NewsletterController::class, 'show'])->name('admin.newsletter.edit');
     Route::post('/admin/newsletter/update/{id}', [NewsletterController::class, 'update'])->name('admin.newsletter.update');
     Route::get('/admin/newsletter/delete/{id}', [NewsletterController::class, 'destroy'])->name('admin.newsletter.delete');

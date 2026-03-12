@@ -24,11 +24,11 @@
                             <option value="4">Service Page</option>
                             <option value="5">Contact Page</option>
                             <option value="6">Career Page</option>
-                            <option value="7">Achivement Page</option>
-                            <option value="8">Event Page</option>
-                            <option value="9">Resent Work Page</option>
-                            <option value="10">Terms & Condition Page</option>
-                            <option value="11">Terms & Sales Page</option>
+                            <option value="7">Casestudy Page</option>
+                            <option value="8">FAQ Page</option>
+                            <option value="9">Industry Serve Page</option>
+                            <option value="10">Solution Page</option>
+                            <option value="11">Team Page</option>
                         </select>
                         @error('page_id')
                             <p class="text-xs text-red-500">{{ $message }}</p>

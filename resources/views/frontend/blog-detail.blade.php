@@ -1,19 +1,22 @@
 <x-frontend.app-layout>
+    @php
+    $meta
+    @endphp
     <main>
         <!-- Blog Details Breadcrumb area start -->
-        <div class="bd-ud-breadcrumb__area bg-css blog-breadcrumb" data-background="assets/img/bg/ud-breadcrumb.jpg">
+        <div class="bd-ud-breadcrumb__area bg-css blog-breadcrumb" data-background="{{asset('frontend/assets/img/bg/ud-breadcrumb.jpg')}}">
             <div class="bd-ud-breadcrumb-shape-1 p-absolute w-img">
-                <img src="assets/img/shape/breadcrumb-shape-1.png" alt="breadcrumb-shape-1">
+                <img src="{{asset('frontend/assets/img/shape/breadcrumb-shape-1.png')}}" alt="breadcrumb-shape-1">
             </div>
             <div class="bd-ud-breadcrumb-shape-2 p-absolute w-img">
-                <img src="assets/img/shape/breadcrumb-shape-2.png" alt="breadcrumb-shape-1">
+                <img src="{{asset('frontend/assets/img/shape/breadcrumb-shape-2.png')}}" alt="breadcrumb-shape-1">
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="bd-ud-breadcrumb__wrapper">
                             <div class="bd-ud-breadcrumb__title">
-                                <h2 class="text-white">Technology Insights & Trends</h2>
+                                <h2 class="text-white">Blog Detail</h2>
                                 <p class="blog-hero-subtitle text-white">
                                     Stay updated with the latest technology insights, industry trends, and best
                                     practices from Nexiva's experts.
@@ -22,9 +25,9 @@
                             <div class="bd-ud-breadcrumb__menu">
                                 <nav aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
                                     <ul class="trail-items">
-                                        <li class="trail-item trail-begin"><span><a href="index.html">Home</a></span>
+                                        <li class="trail-item trail-begin"><span><a href="{{ route('index') }}">Home</a></span>
                                         </li>
-                                        <li class="trail-item"><span><a href="blog.html">Blog</a></span></li>
+                                        <li class="trail-item"><span><a href="{{ route('blog') }}">Blog</a></span></li>
                                         <li class="trail-item trail-end"><span>Blog Details</span></li>
                                     </ul>
                                 </nav>
