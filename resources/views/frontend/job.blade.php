@@ -1,9 +1,9 @@
 <x-frontend.app-layout>
-     @php
-      $pageId=6;
-   @endphp
+    @php
+        $pageId = 6;
+    @endphp
     <main>
-<x-frontend.banner :pageId="$pageId" title="Careers at Nexiva Technologies" />
+        <x-frontend.banner :pageId="$pageId" title="Careers at Nexiva Technologies" />
         <!-- Careers Hero Section -->
         <section class="career-hero-section bg-css" data-background="assets/img">
             <div class="container">
@@ -32,7 +32,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="career-hero-image wow fadeInUp" data-wow-delay=".5s">
-                            <img src="{{asset('frontend/assets/img/Blog/blog-post-6.jpg')}}" alt="Team Collaboration" class="img-fluid">
+                            <img src="{{ asset('frontend/assets/img/Blog/blog-post-6.jpg') }}" alt="Team Collaboration"
+                                class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -239,20 +240,20 @@
                         <div class="culture-gallery wow fadeInUp" data-wow-delay=".7s">
                             <div class="row g-3">
                                 <div class="col-6">
-                                    <img src="{{asset('frontend/assets/img/Blog/project-details-04.jpg')}}" alt="Team Meeting"
-                                        class="img-fluid rounded-3">
+                                    <img src="{{ asset('frontend/assets/img/Blog/project-details-04.jpg') }}"
+                                        alt="Team Meeting" class="img-fluid rounded-3">
                                 </div>
                                 <div class="col-6">
-                                    <img src="{{asset('frontend/assets/img/Blog/blog-post-5.jpg')}}" alt="Training Session"
-                                        class="img-fluid rounded-3">
+                                    <img src="{{ asset('frontend/assets/img/Blog/blog-post-5.jpg') }}"
+                                        alt="Training Session" class="img-fluid rounded-3">
                                 </div>
                                 <div class="col-6 mt-3">
-                                    <img src="{{asset('frontend/assets/img/Blog/blog-post-2.jpg')}}" alt="Team Celebration"
-                                        class="img-fluid rounded-3">
+                                    <img src="{{ asset('frontend/assets/img/Blog/blog-post-2.jpg') }}"
+                                        alt="Team Celebration" class="img-fluid rounded-3">
                                 </div>
                                 <div class="col-6 mt-3">
-                                    <img src="{{asset('frontend/assets/img/Blog/blog-post-4.jpg')}}" alt="Work Environment"
-                                        class="img-fluid rounded-3">
+                                    <img src="{{ asset('frontend/assets/img/Blog/blog-post-4.jpg') }}"
+                                        alt="Work Environment" class="img-fluid rounded-3">
                                 </div>
                             </div>
                         </div>
@@ -476,102 +477,38 @@
 
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
+
                         <div class="accordion" id="careerAccordion">
-                            <!-- FAQ 1 -->
-                            <div class="accordion-item wow fadeInUp" data-wow-delay=".4s">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq1">
-                                        What is the typical hiring timeline?
-                                    </button>
-                                </h3>
-                                <div id="faq1" class="accordion-collapse collapse show"
-                                    data-bs-parent="#careerAccordion">
-                                    <div class="accordion-body">
-                                        The hiring process typically takes 2-4 weeks from application to offer,
-                                        depending on the role and
-                                        interview availability. We strive to provide updates within 5-7 business days
-                                        after each stage.
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- FAQ 2 -->
-                            <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq2">
-                                        Do you offer remote work options?
-                                    </button>
-                                </h3>
-                                <div id="faq2" class="accordion-collapse collapse"
-                                    data-bs-parent="#careerAccordion">
-                                    <div class="accordion-body">
-                                        Yes, we offer flexible work arrangements including remote, hybrid, and on-site
-                                        options depending on
-                                        the role. Many of our positions are available for remote work from anywhere in
-                                        the country.
-                                    </div>
-                                </div>
-                            </div>
+                            @foreach ($faqs as $faq)
+                                <div class="accordion-item wow fadeInUp"
+                                    data-wow-delay="{{ 0.4 + $loop->index * 0.1 }}s">
 
-                            <!-- FAQ 3 -->
-                            <div class="accordion-item wow fadeInUp" data-wow-delay=".6s">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq3">
-                                        What benefits do you offer?
-                                    </button>
-                                </h3>
-                                <div id="faq3" class="accordion-collapse collapse"
-                                    data-bs-parent="#careerAccordion">
-                                    <div class="accordion-body">
-                                        We offer comprehensive benefits including health insurance, retirement plans,
-                                        performance bonuses,
-                                        paid time off, flexible hours, professional development budget, wellness
-                                        programs, and team events.
-                                    </div>
-                                </div>
-                            </div>
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}"
+                                            type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq{{ $faq->id }}">
 
-                            <!-- FAQ 4 -->
-                            <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq4">
-                                        Do you hire fresh graduates?
-                                    </button>
-                                </h3>
-                                <div id="faq4" class="accordion-collapse collapse"
-                                    data-bs-parent="#careerAccordion">
-                                    <div class="accordion-body">
-                                        Absolutely! We have specific programs and entry-level positions designed for
-                                        fresh graduates. We
-                                        value passion, learning ability, and potential as much as experience.
-                                    </div>
-                                </div>
-                            </div>
+                                            {{ $faq->question }}
 
-                            <!-- FAQ 5 -->
-                            <div class="accordion-item wow fadeInUp" data-wow-delay=".8s">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq5">
-                                        What is the work culture like?
-                                    </button>
-                                </h3>
-                                <div id="faq5" class="accordion-collapse collapse"
-                                    data-bs-parent="#careerAccordion">
-                                    <div class="accordion-body">
-                                        Our culture is collaborative, innovative, and supportive. We believe in
-                                        work-life balance,
-                                        continuous learning, and empowering our team members to take ownership of their
-                                        work. We celebrate
-                                        diversity and encourage open communication.
+                                        </button>
+                                    </h3>
+
+                                    <div id="faq{{ $faq->id }}"
+                                        class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                        data-bs-parent="#careerAccordion">
+
+                                        <div class="accordion-body">
+                                            {{ $faq->answer }}
+                                        </div>
+
                                     </div>
+
                                 </div>
-                            </div>
+                            @endforeach
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -601,7 +538,8 @@
 
 
 
-        <section class="bd-ud-cta pt-105  mb-50" data-background="{{asset('frontend/assets/img/bg/ud-cta-bg.png')}}">
+        <section class="bd-ud-cta pt-105  mb-50"
+            data-background="{{ asset('frontend/assets/img/bg/ud-cta-bg.png') }}">
             <div class="container">
                 <div class="row align-items-center wow fadeInUp" data-wow-delay=".3s">
                     <div class="col-lg-7">
@@ -632,12 +570,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="generalApplicationForm" enctype="multipart/form-data">
+                        <form id="generalApplicationForm" method="POST" action="{{ route('career.general.inquiry') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" name="full_name" required>
+                                        <input type="text" class="form-control" name="name" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -662,7 +601,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-label">Tell us about yourself</label>
-                                        <textarea class="form-control" name="about_you" rows="4"
+                                        <textarea class="form-control" name="message" rows="4"
                                             placeholder="Share your skills, experience, and what you're looking for..."></textarea>
                                     </div>
                                 </div>
@@ -670,7 +609,7 @@
                                     <div class="form-group">
                                         <label class="form-label">Upload Resume/CV *</label>
                                         <div class="file-upload-wrapper">
-                                            <input type="file" class="form-control" name="resume"
+                                            <input type="file" class="form-control" name="cv"
                                                 accept=".pdf,.doc,.docx" required>
                                             <small class="text-muted">Accepted formats: PDF, DOC, DOCX (Max:
                                                 5MB)</small>
@@ -686,10 +625,10 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" name="privacy_policy"
+                                        <input type="checkbox" class="form-check-input"
                                             required>
                                         <label class="form-check-label">
-                                            I agree to the <a href="privacy.html">Privacy Policy</a> and consent to my
+                                            I agree to the <a href="#">Privacy Policy</a> and consent to my
                                             data being stored for
                                             future opportunities.
                                         </label>

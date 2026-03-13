@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\CertificationController;
 use App\Http\Controllers\admin\CollaboratorController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\GeneralCareerInquiryController;
 use App\Http\Controllers\admin\IndustryServeController;
 use App\Http\Controllers\admin\JobController;
 use App\Http\Controllers\admin\NewsletterController;
@@ -41,6 +42,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/career-post-store', [CareerInquiryController::class, 'store'])->name('career.post.store');
+Route::post('/career-general-store', [GeneralCareerInquiryController::class, 'store'])->name('career.general.inquiry');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/blog/detail/{slug}', [PageController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/service', [PageController::class, 'service'])->name('service');
@@ -119,6 +121,10 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/career-inquiry/edit/{id}', [CareerInquiryController::class, 'show'])->name('admin.career-inquiry.edit');
     Route::post('/admin/career-inquiry/update/{id}', [CareerInquiryController::class, 'update'])->name('admin.career-inquiry.update');
     Route::get('/admin/career-inquiry/delete/{id}', [CareerInquiryController::class, 'delete'])->name('admin.career-inquiry.delete');
+
+    Route::get('/admin/career-general-inquiry', [GeneralCareerInquiryController::class, 'index'])->name('admin.career-general-inquiry');
+    Route::get('/admin/career-general-inquiry/delete/{id}', [GeneralCareerInquiryController::class, 'delete'])->name('admin.career-general-inquiry.delete');
+
 
     // Collaborator
     Route::get('/admin/collaborator', [CollaboratorController::class, 'index'])->name('admin.collaborator');
